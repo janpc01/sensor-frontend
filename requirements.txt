@@ -30,3 +30,5 @@ black>=24.8.0
 isort>=5.13.2
 mypy>=1.11
 pyproject-flake8>=5.0.4
+
+python-dotenv>=1.0.0
