@@ -26,7 +26,7 @@ load_dotenv()
 credentials_info = json.loads(os.getenv('GOOGLE_CREDENTIALS'))
 credentials = service_account.Credentials.from_service_account_info(credentials_info)
 
-# logger.info(f"Raw GOOGLE_CREDENTIALS: {os.getenv('GOOGLE_CREDENTIALS')}")
+logger.info(f"Raw GOOGLE_CREDENTIALS: {os.getenv('GOOGLE_CREDENTIALS')}")
 # logger.info(f"Formatted GOOGLE_CREDENTIALS: {formatted_credentials}")
 
 
