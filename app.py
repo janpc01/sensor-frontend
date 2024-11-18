@@ -47,19 +47,25 @@ def generate_sensor_data() -> Iterator[str]:
                 .limit(10)
                 .stream()
             )
-
+            logger.info(f"Querying for data after: {last_timestamp}")
+            count = 0
+            logger.info(f"Readings: {readings}")
+            data = None
             for reading in readings:
+                count += 1
                 data = reading.to_dict()
+                logger.info(f"Found data: {data}")
                 last_timestamp = data['timestamp']
-                
-                timestamp = data['timestamp'].strftime("%Y-%m-%d %H:%M:%S")
-                
-                json_data = json.dumps({
-                    "time": timestamp,
-                    "sensor1": data['sensor1'],
-                    "sensor2": data['sensor2'],
-                })
-                yield f"data:{json_data}\n\n"
+            logger.info(f"Found {count} readings")
+            
+            timestamp = data['timestamp'].strftime("%Y-%m-%d %H:%M:%S")
+            
+            json_data = json.dumps({
+                "time": timestamp,
+                "sensor1": data['sensor1'],
+                "sensor2": data['sensor2'],
+            })
+            yield f"data:{json_data}\n\n"
             
             time.sleep(1)
     except GeneratorExit:
