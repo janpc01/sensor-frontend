@@ -15,7 +15,7 @@ logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s %
 logger = logging.getLogger(__name__)
 
 # Initialize Flask app
-application = Flask(__name__)
+app = Flask(__name__)
 
 # Remove the hardcoded credentials path
 # Instead, load credentials from environment variables
@@ -25,7 +25,7 @@ credentials = service_account.Credentials.from_service_account_info(credentials_
 # Initialize Firestore client with credentials
 db = firestore.Client(credentials=credentials)
 
-@application.route("/")
+@app.route("/")
 def index() -> str:
     return render_template("index.html")
 
@@ -74,7 +74,7 @@ def generate_sensor_data() -> Iterator[str]:
     except GeneratorExit:
         logger.info("Client %s disconnected", client_ip)
 
-@application.route("/chart-data")
+@app.route("/chart-data")
 def chart_data() -> Response:
     response = Response(stream_with_context(generate_sensor_data()), mimetype="text/event-stream")
     response.headers["Cache-Control"] = "no-cache"
@@ -85,6 +85,5 @@ if __name__ == "__main__":
     print("Starting sensor dashboard server...")
     print("Access the dashboard at: http://localhost:5001")
     # application.run(host="0.0.0.0", port=5001, threaded=True)
-    app = application
     app.run()
 
