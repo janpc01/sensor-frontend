@@ -1,5 +1,7 @@
 # Flask and related dependencies
+python-dotenv
 Flask>=3.0.3
+
 gevent>=24.2.1
 gunicorn>=23.0.0
 Werkzeug
@@ -31,4 +33,3 @@ isort>=5.13.2
 mypy>=1.11
 pyproject-flake8>=5.0.4
 
-python-dotenv>=1.0.0
