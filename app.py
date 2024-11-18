@@ -8,6 +8,7 @@ from typing import Iterator
 from flask import Flask, Response, render_template, request, stream_with_context
 from google.cloud import firestore
 import os
+from google.oauth2 import service_account
 
 # Set up logging
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -16,11 +17,13 @@ logger = logging.getLogger(__name__)
 # Initialize Flask app
 application = Flask(__name__)
 
-# Set your Google Cloud credentials
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "credentials.json"
+# Remove the hardcoded credentials path
+# Instead, load credentials from environment variables
+credentials_info = json.loads(os.getenv('GOOGLE_CREDENTIALS'))
+credentials = service_account.Credentials.from_service_account_info(credentials_info)
 
-# Initialize Firestore client
-db = firestore.Client()
+# Initialize Firestore client with credentials
+db = firestore.Client(credentials=credentials)
 
 @application.route("/")
 def index() -> str:
