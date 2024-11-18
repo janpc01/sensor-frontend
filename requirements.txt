@@ -1,4 +1,4 @@
 Flask
 google-cloud-firestore
 google-auth
-google-oauth2-client
+google-auth-oauthlib
