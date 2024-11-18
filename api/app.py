@@ -84,5 +84,6 @@ def chart_data() -> Response:
 if __name__ == "__main__":
     print("Starting sensor dashboard server...")
     print("Access the dashboard at: http://localhost:5001")
-    application.run(host="0.0.0.0", port=5001, threaded=True)
+    # application.run(host="0.0.0.0", port=5001, threaded=True)
+    app = application
 
