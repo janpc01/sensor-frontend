@@ -10,6 +10,8 @@ from google.cloud import firestore
 import os
 from google.oauth2 import service_account
 
+from dotenv import load_dotenv
+
 # Set up logging
 logging.basicConfig(stream=sys.stdout, level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
@@ -20,6 +22,7 @@ app = Flask(__name__, template_folder=template_dir)
 
 # Remove the hardcoded credentials path
 # Instead, load credentials from environment variables
+load_dotenv()
 credentials_info = json.loads(os.getenv('GOOGLE_CREDENTIALS'))
 credentials = service_account.Credentials.from_service_account_info(credentials_info)
 
