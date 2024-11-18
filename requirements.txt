@@ -1,16 +1,30 @@
-google-cloud-firestore
-google-auth
-google-auth-oauthlib
+# Flask and related dependencies
+Flask>=3.0.3
+gevent>=24.2.1
+gunicorn>=23.0.0
 Werkzeug
 Jinja2
 itsdangerous
 click
+
+# Google Cloud dependencies
+google-cloud-firestore
+google-auth
+google-auth-oauthlib
 google-api-core
+google-cloud-storage
+google-cloud-pubsub
+google-cloud-bigquery
+google-cloud-logging
+googleapis-common-protos
+google-cloud-functions
+google-cloud-datastore
+google-cloud-translate
+google-cloud-vision
 protobuf
 typing-extensions
-Flask>=3.0.3
-gevent>=24.2.1
-gunicorn>=23.0.0
+
+# Development and formatting tools
 autoflake>=1.7
 black>=24.8.0
 isort>=5.13.2
