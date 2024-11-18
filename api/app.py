@@ -28,6 +28,10 @@ formatted_credentials = raw_credentials.replace('\\n', '\n')
 credentials_info = json.loads(formatted_credentials)
 credentials = service_account.Credentials.from_service_account_info(credentials_info)
 
+logger.info(f"Raw GOOGLE_CREDENTIALS: {os.getenv('GOOGLE_CREDENTIALS')}")
+logger.info(f"Formatted GOOGLE_CREDENTIALS: {formatted_credentials}")
+
+
 # Initialize Firestore client with credentials
 db = firestore.Client(credentials=credentials)
 
