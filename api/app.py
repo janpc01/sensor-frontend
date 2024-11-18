@@ -23,7 +23,9 @@ app = Flask(__name__, template_folder=template_dir)
 # Remove the hardcoded credentials path
 # Instead, load credentials from environment variables
 load_dotenv()
-credentials_info = json.loads(os.getenv('GOOGLE_CREDENTIALS'))
+raw_credentials = os.getenv('GOOGLE_CREDENTIALS')
+formatted_credentials = raw_credentials.replace('\\n', '\n')
+credentials_info = json.loads(formatted_credentials)
 credentials = service_account.Credentials.from_service_account_info(credentials_info)
 
 # Initialize Firestore client with credentials
